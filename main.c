@@ -17,7 +17,6 @@ int main() {
 	TRISE &= ~0xFF;
 	TRISF |= 0x2;
 
-
 	while(1) {
 		sleep(100000);
 
@@ -29,3 +28,5 @@ int main() {
 	}
 	return 0;
 }
+
+//isacs coola kommentar från sin branch
