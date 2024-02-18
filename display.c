@@ -14,6 +14,8 @@ uint8_t displayBuffer[DISPLAY_SIZE];
 
 // from the chipkit ref manual
 
+extern uint8_t font[];
+
 uint8_t spi_put_byte(uint8_t bVal) {
 
 	while ((SPI2STAT & PIC32_SPISTAT_SPITBE) == 0);
@@ -31,6 +33,13 @@ void putPixel(uint8_t x, uint8_t y) {
     int row = y / 8;
 
     displayBuffer[x + DISPLAY_SIZE_X * row] |= (0x1 << (y % 8));
+}
+
+void putNotPixel(uint8_t x, uint8_t y) {
+
+    int row = y / 8;
+
+    displayBuffer[x + DISPLAY_SIZE_X * row] &= (~(0x1 << (y % 8)));
 }
 
 void displayChar(const uint8_t x, const uint8_t y, char character, const uint8_t *font) {
@@ -61,7 +70,7 @@ void displayChar(const uint8_t x, const uint8_t y, char character, const uint8_t
 
 void displayString(const uint8_t x, const uint8_t y, char *character, const uint8_t *font) {
     int i = 0;
-    while(character[i] != NULL) {
+    while(character[i] != 0) {
 
         displayChar(x + i * font[0], y, character[i], font);
 
@@ -101,7 +110,6 @@ void clearDisplay(void) {
     }
 }
 
-
 void displayRow(uint8_t byteAmount, uint8_t * buffer) {
 
     int j;
@@ -123,6 +131,67 @@ void displayRow(uint8_t byteAmount, uint8_t * buffer) {
         
     }
 
+}
+
+void displayPacFood(const uint8_t x, const uint8_t y, const uint8_t *gridArray) {
+
+    int i, j;
+    int w = gridArray[0];
+    int h = gridArray[1];
+
+    int n = 0;
+
+    for (i = 0; i < h; i++) {
+        for (j = 0; j < w; j++) {
+            if((gridArray[2 + n / 8] & (0x1 << (7 - n % 8))) == 0)
+                putPixel(x + j*5, y + i*5); 
+            n += 1;
+        }
+    }
+}
+
+void displayLine(int x, int y, int len) {
+    // Displays Horizontal Line
+	int i = x;
+    for (i; i < x + len; i++)
+    {
+        putPixel(i, y);
+    } 
+}
+
+void displayNotLine(int x, int y, int len) {
+    // Displays Horizontal Line
+	int i = x;
+    for (i; i < x + len; i++)
+    {
+        putNotPixel(i, y);
+    } 
+}
+
+void displayScore(int score) {
+    
+    //Display black box
+    int i = 0;
+    for(i; i<6; i++){
+        displayNotLine(0, i, 22);
+    }
+
+    //convert score to string
+    char str[10];
+    int tempNum = score;
+    i = 0;
+    while (tempNum != 0){ // find length of score
+        tempNum /= 10;
+        i++;
+    }
+    str[i] = '\0';
+    while (score) {
+        str[--i] = '0' + (score % 10);
+        score /= 10;
+    }
+
+    //display the score
+    displayString(1,0, str, font);
 }
 
 void updateDisplay() {
@@ -151,7 +220,6 @@ void updateDisplay() {
 }
 
 // from the chipkit ref manual
-
 void displayInit(void) {
 
     SET_COMMAND_MODE;
@@ -187,7 +255,6 @@ void displayInit(void) {
 }
 
 // From github at https://github.com/is1200-example-projects/hello-display/blob/master/main.c#L271
-
 void SPIInit(void) {
     // Set up the bus clock
 	OSCCON &= ~0x180000;
