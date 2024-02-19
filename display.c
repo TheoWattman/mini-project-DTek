@@ -163,6 +163,14 @@ void displayNotLine(int x, int y, int len) {
     } 
 }
 
+void clearRect(int x, int y, int width, int height) {
+  	int i = y;
+    for (i; i < y + height; i++)
+    {
+        displayNotLine(x, i, width);
+    }  
+}
+
 void displayScore(int score) {
     
     //Display black box

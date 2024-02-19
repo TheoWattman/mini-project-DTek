@@ -7,12 +7,15 @@ extern uint8_t down[];
 extern uint8_t defaultPac[];
 extern uint8_t gridMap[];
 
-void initPacman(Pacman *pacman) {
-    pacman->x = 25;
-    pacman->y = 25;
+// Game over animation
+extern uint8_t GO_anim[7][6];
 
-    pacman->targetX = 5;
-    pacman->targetY = 5;
+void initPacman(Pacman *pacman) {
+    pacman->x = 12 * GRIDSIZE;
+    pacman->y = 3 * GRIDSIZE;
+
+    pacman->targetX = 12;
+    pacman->targetY = 3;
 
     pacman->dirX = 0;
     pacman->dirY = 0;
@@ -69,4 +72,15 @@ void teleport(Pacman *pacman, int targetX, int targetY) {
 
     pacman->x = targetX * GRIDSIZE;
     pacman->y = targetY * GRIDSIZE;
+}
+
+void gameOverAnimation(Pacman *pacman) {
+    int i = 0;
+    for (i; i <= 6; i++){
+        sleep(1000000);
+        clearRect(pacman->x - pacman->cameraX, pacman->y - pacman->cameraY, 5, 5);
+        displayBitarray(pacman->x - pacman->cameraX, pacman->y - pacman->cameraY, GO_anim[i]);
+        updateDisplay();
+    }
+    sleep(1000000);
 }

@@ -12,8 +12,15 @@
 #define DEAD     3
 
 // Ghost types
-#define AGGRESSIVE 0
-#define STRATEGIC 1
+#define BLINKY 0
+#define INKY 1
+#define PINKY 2
+#define CLYDE 3
+
+// Ghost counter
+#define CHASE_COUNTER 500
+#define SCATTER_COUNTER 200
+#define FLEE_COUNTER 200
 
 typedef struct {
     // Precise position
@@ -33,6 +40,8 @@ typedef struct {
     // CHASE - Chases Pacman
     // FLEE - Flees from Pacman, usually after Pacman eats a power pallet
     uint8_t state;
+    // Counter, will count towards a new state
+    int counter;
     // Type of ghost,
     // AGGRESSIVE - Will chase player directly 
     // STRATEGIC - Will try to cut off the player by working directly together with an AGGRESSIVE ghost.
@@ -40,7 +49,7 @@ typedef struct {
 } Ghost;
 
 // Initializes the Ghost
-void initGhost(Ghost *ghost);
+void initGhost(Ghost *ghost, int type);
 
 // Pathfinding for the Ghost, finds the next target grid depending on state.
 // - Chase: Next grid is the adjacent grid closest to the final target
@@ -57,3 +66,7 @@ void teleportGhost(Ghost *ghost, int targetX, int targetY);
 void updateGhosts(Ghost *ghost, Pacman *pacman);
 
 int handlePacmanGhostCollision(Ghost *ghost, Pacman *pacman);
+
+void ChasePacman(Ghost *ghost, Pacman *pacman);
+
+void changeGhostState(Ghost *ghost, int state);
