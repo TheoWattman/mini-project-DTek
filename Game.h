@@ -31,11 +31,11 @@ int game() {
 
         if(pacman.x == pacman.targetX * GRIDSIZE && pacman.y == pacman.targetY * GRIDSIZE) { // If player is at target grid.
             
-            checkPickup(pacman.targetX, pacman.targetY, ghosts, &score);
-            handleInput(&pacman);
+            checkPickup(pacman.targetX, pacman.targetY, ghosts, &score);    // Check if player is currently at a pickup
+            handleInput(&pacman); 
 
             if(!checkCollision(pacman.targetX + pacman.dirX, pacman.targetY + pacman.dirY)) {
-                pacman.targetX += pacman.dirX;
+                pacman.targetX += pacman.dirX;  // Move Pacman towards target grid.
                 pacman.targetY += pacman.dirY;
             } else {
                 if(pacman.targetX == 24 && pacman.targetY == 9){    // At right teleporter
@@ -47,8 +47,8 @@ int game() {
                     teleport(&pacman, 24, 9);
                     updateGhosts(ghosts, &pacman);
                     continue;
-                } else {
-                    pacman.dirX = 0;
+                } else {  
+                    pacman.dirX = 0;       // Pacman is at a wall so stop.
                     pacman.dirY = 0;
                 }
             }
