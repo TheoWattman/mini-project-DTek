@@ -1,7 +1,4 @@
-#include <pic32mx.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <math.h>
+#include "display.h"
 
 #define DISPLAY_SIZE_X 128
 #define DISPLAY_SIZE_Y 4
@@ -11,8 +8,6 @@
 #define SET_DATA_MODE (PORTFSET = 0x10)
 
 uint8_t displayBuffer[DISPLAY_SIZE];
-
-// from the chipkit ref manual
 
 extern uint8_t font[];
 
@@ -83,7 +78,7 @@ void sleep(int cyc) {
     for (i = cyc; i > 0; i--);
 }
 
-void displayBitarray(const uint8_t x, const uint8_t y, const uint8_t *byteArray, uint8_t flip) {
+void displayBitarray(const uint8_t x, const uint8_t y, const uint8_t *byteArray) {
 
     int i, j;
     int w = byteArray[0];
