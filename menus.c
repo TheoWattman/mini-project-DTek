@@ -177,7 +177,7 @@ void mainMenu()
     }
 
     if((menuOption % 3) == 0) {
-    // enter game
+        // enter game
         game();
     }
     if((menuOption % 3) == 1) {

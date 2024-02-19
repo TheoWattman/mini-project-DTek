@@ -21,7 +21,7 @@ void resetGame(Ghost *ghosts, Pacman *pacman) {
     initGhost(&ghosts[1], INKY);
     initGhost(&ghosts[2], CLYDE);
     initGhost(&ghosts[3], PINKY);
-    sleep(1000000);
+    sleep(2000000);
 }
 
 int game() {
@@ -41,9 +41,7 @@ int game() {
     int score = 0;
 
     while(1) {
-        // Sleep(FRAMELENGTH);
         sleep(150000);
-        // handleMSGs(); 
         clearDisplay();
 
         if(pacman.x == pacman.targetX * GRIDSIZE && pacman.y == pacman.targetY * GRIDSIZE) { // If player is at target grid.

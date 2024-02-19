@@ -11,11 +11,11 @@ extern uint8_t gridMap[];
 extern uint8_t GO_anim[7][6];
 
 void initPacman(Pacman *pacman) {
-    pacman->x = 25;
-    pacman->y = 25;
+    pacman->x = 12 * GRIDSIZE;
+    pacman->y = 3 * GRIDSIZE;
 
-    pacman->targetX = 5;
-    pacman->targetY = 5;
+    pacman->targetX = 12;
+    pacman->targetY = 3;
 
     pacman->dirX = 0;
     pacman->dirY = 0;

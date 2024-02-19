@@ -15,8 +15,8 @@ int main() {
 
 	TRISE &= ~0xFF;
 	TRISF |= 0x2;
-
-	mainMenu();
-	
+	while(1) {
+		mainMenu();
+	}	
 	return 0;
 }
