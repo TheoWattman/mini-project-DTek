@@ -13,4 +13,7 @@
 #define PIXEL_OFFSET_MIDDLE 15
 #define FRAMELENGTH 40
 
+// Ghosts
+#define GHOST_AMOUNT 4
+
 #define MAX_INT 2147483647

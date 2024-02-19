@@ -13,8 +13,11 @@ int game() {
     Pacman pacman;
     initPacman(&pacman);
 
-    Ghost ghost;
-    initGhost(&ghost);
+    Ghost ghosts[GHOST_AMOUNT];
+    initGhost(&ghosts[0], BLINKY);
+    initGhost(&ghosts[1], INKY);
+    initGhost(&ghosts[2], CLYDE);
+    initGhost(&ghosts[3], PINKY);
 
     initEntityMap();
 
@@ -27,42 +30,44 @@ int game() {
         clearDisplay();
 
         // Check if Pacman is colliding with ghosts and handles it accordingly
-        handlePacmanGhostCollision(&ghost, &pacman);
+        handlePacmanGhostCollision(ghosts, &pacman);
 
         // Update position and behavior of player and enemy.
-        updateGhosts(&ghost, &pacman);
+        updateGhosts(ghosts, &pacman);
         updatePacman(&pacman);
 
         // Update visuals of player, map and enemies.
         drawEntityMap(&pacman);                                     // Draw pickups
         displayBitarray(-pacman.cameraX, -pacman.cameraY, map);     // Draw Map with offset of camera position
-        displayGhost(&ghost, &pacman);                                 // 
+        displayGhosts(ghosts, &pacman);                           
         displayPacman(&pacman);
 
         displayScore(score);
 
-        if(pacman.x == pacman.targetX * GRIDSIZE && pacman.y == pacman.targetY * GRIDSIZE) {    // If player is at target grid.
+        if(pacman.x == pacman.targetX * GRIDSIZE && pacman.y == pacman.targetY * GRIDSIZE) { // If player is at target grid.
             
-            checkPickup(pacman.targetX, pacman.targetY, &ghost, &score);
-            handleInput(&pacman);                                                               
+            checkPickup(pacman.targetX, pacman.targetY, ghosts, &score);
+            handleInput(&pacman);
 
             if(!checkCollision(pacman.targetX + pacman.dirX, pacman.targetY + pacman.dirY)) {
                 pacman.targetX += pacman.dirX;
                 pacman.targetY += pacman.dirY;
             } else {
-                if(pacman.targetX == 24 && pacman.targetY == 9){                                 // At right teleporter
+                if(pacman.targetX == 24 && pacman.targetY == 9){    // At right teleporter
                     teleport(&pacman, 0, 9);
-                    updateGhosts(&ghost, &pacman);
+                    updateGhosts(ghosts, &pacman);
+                    continue;
                 }
-                else if(pacman.targetX == 0 && pacman.targetY == 9){                             // At left teleporter
+                else if(pacman.targetX == 0 && pacman.targetY == 9){   // At left teleporter
                     teleport(&pacman, 24, 9);
-                    updateGhosts(&ghost, &pacman);
+                    updateGhosts(ghosts, &pacman);
+                    continue;
                 } else {
                     pacman.dirX = 0;
                     pacman.dirY = 0;
                 }
-                }
             }
+        }
 
         updateDisplay();
     }
