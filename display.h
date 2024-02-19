@@ -38,6 +38,9 @@ void displayLine(int x, int y, int len);
 // Clears a line with a given x, y and length.
 void displayNotLine(int x, int y, int len) ;
 
+// Clears a rectangle with a given x, y, width and length.
+void clearRect(int x, int y, int width, int height);
+
 // Displays the score.
 void displayScore(int score);
 

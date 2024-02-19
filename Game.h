@@ -6,12 +6,29 @@
 #include "IO.h"
 #include "Pickups.h"
 
-void updateDisplay();
+void enterName(int score);
+
+void resetGame(Ghost *ghosts, Pacman *pacman) {
+    sleep(1000000);
+    clearDisplay();
+    // drawEntityMap(&pacman);                                     
+    displayBitarray(-pacman->cameraX, -pacman->cameraY, map);
+    gameOverAnimation(pacman);
+
+    initPacman(pacman);
+
+    initGhost(&ghosts[0], BLINKY);
+    initGhost(&ghosts[1], INKY);
+    initGhost(&ghosts[2], CLYDE);
+    initGhost(&ghosts[3], PINKY);
+    sleep(1000000);
+}
 
 int game() {
 
     Pacman pacman;
     initPacman(&pacman);
+    pacman.lives = 3;
 
     Ghost ghosts[GHOST_AMOUNT];
     initGhost(&ghosts[0], BLINKY);
@@ -55,7 +72,15 @@ int game() {
         }
 
         // Check if Pacman is colliding with ghosts and handles it accordingly
-        handlePacmanGhostCollision(ghosts, &pacman);
+        if(handlePacmanGhostCollision(ghosts, &pacman)) {
+            pacman.lives--;
+
+            resetGame(ghosts, &pacman);
+            if(pacman.lives == 0)
+                break;
+
+            continue;
+        };
 
         // Update position and behavior of player and enemy.
         updateGhosts(ghosts, &pacman);
@@ -71,6 +96,8 @@ int game() {
 
         updateDisplay();
     }
+
+    enterName(score);
 
     return 0;
 }
