@@ -29,21 +29,6 @@ int game() {
         // handleMSGs(); 
         clearDisplay();
 
-        // Check if Pacman is colliding with ghosts and handles it accordingly
-        handlePacmanGhostCollision(ghosts, &pacman);
-
-        // Update position and behavior of player and enemy.
-        updateGhosts(ghosts, &pacman);
-        updatePacman(&pacman);
-
-        // Update visuals of player, map and enemies.
-        drawEntityMap(&pacman);                                     // Draw pickups
-        displayBitarray(-pacman.cameraX, -pacman.cameraY, map);     // Draw Map with offset of camera position
-        displayGhosts(ghosts, &pacman);                           
-        displayPacman(&pacman);
-
-        displayScore(score);
-
         if(pacman.x == pacman.targetX * GRIDSIZE && pacman.y == pacman.targetY * GRIDSIZE) { // If player is at target grid.
             
             checkPickup(pacman.targetX, pacman.targetY, ghosts, &score);
@@ -68,6 +53,21 @@ int game() {
                 }
             }
         }
+
+        // Check if Pacman is colliding with ghosts and handles it accordingly
+        handlePacmanGhostCollision(ghosts, &pacman);
+
+        // Update position and behavior of player and enemy.
+        updateGhosts(ghosts, &pacman);
+        updatePacman(&pacman);
+
+        // Update visuals of player, map and enemies.
+        drawEntityMap(&pacman);                                     // Draw pickups
+        displayBitarray(-pacman.cameraX, -pacman.cameraY, map);     // Draw Map with offset of camera position
+        displayGhosts(ghosts, &pacman);                           
+        displayPacman(&pacman);
+
+        displayScore(score);
 
         updateDisplay();
     }
