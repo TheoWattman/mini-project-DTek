@@ -109,10 +109,10 @@ void enterNameDisplay(char *initials, int pos) {
     displayString(2,22, "ABCDEFGHIJKLMNOPQRSTUVWXY", font);
     displayLine(2 + 5*pos,28,5);
 
-    if(initials[0] != NULL){
+    if(initials[0] != '0'){
         displayChar(71,10, initials[0], font);
     }
-    if(initials[1] != NULL){
+    if(initials[1] != '0'){
         displayChar(78,10, initials[1], font);
     }
 
@@ -193,12 +193,12 @@ void enterName(int score) {
     
     int i = 0;
     int pos = 0;
-    char initials[2] = {'\0', '\0'};
+    char initials[2] = {'0', '0'};
     enterNameDisplay(initials, pos);
 
     while(getBtns()){sleep(1000);} // wait until buttons are released
 
-    while(initials[1] == NULL) {
+    while(initials[1] == '0') {
 
         while (!getBtns()) {sleep(1000);}
 
@@ -217,6 +217,8 @@ void enterName(int score) {
 
     storeHighScore(initials, score);
 
-    sleep(1500000);
+    sleep(100000);
+
+    mainMenu();
 
 }

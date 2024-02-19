@@ -29,7 +29,7 @@ int game() {
         clearDisplay();
 
         // Check if Pacman is colliding with ghosts and handles it accordingly
-        handlePacmanGhostCollision(&ghost, &pacman);
+        if(handlePacmanGhostCollision(&ghost, &pacman)) break;
 
         // Update position and behavior of player and enemy.
         updateGhosts(&ghost, &pacman);
@@ -63,12 +63,13 @@ int game() {
                     pacman.dirX = 0;
                     pacman.dirY = 0;
                 }
-                }
             }
         }
 
         updateDisplay();
     }
+
+    enterName(score);
 
     return 0;
 }

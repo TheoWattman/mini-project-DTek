@@ -48,10 +48,10 @@ void checkPickup(int x, int y, Ghost *ghost, int* score) {
 
     if(entityMap[byte + 2] & (0x1 << bit)) {
         entityMap[byte + 2] &= ~(0x1 << bit); // clear pac food
-        score += 10;
+        *score += 10;
         if((x == 1 && y == 3) || (x == 23 && y == 3) || (x == 1 && y == 13) || (x == 23 && y == 13)) {
             ghost->state = FLEE;
-            score += 40;
+            *score += 40;
         }
     }
 }
