@@ -39,6 +39,4 @@ void updatePacman(Pacman* pacman);
 // Teleports Pacman to a given grid
 void teleport(Pacman *pacman, int targetX, int targetY);
 
-void sleep(int cyc);
-
 void gameOverAnimation(Pacman *pacman);

@@ -178,7 +178,9 @@ void mainMenu()
 
     if((menuOption % 3) == 0) {
         // enter game
-        game();
+        int score = 0;
+        game(&score);
+        enterName(score);
     }
     if((menuOption % 3) == 1) {
         // enter scores

@@ -74,6 +74,8 @@ void teleport(Pacman *pacman, int targetX, int targetY) {
     pacman->y = targetY * GRIDSIZE;
 }
 
+void sleep(int cyc);
+
 void gameOverAnimation(Pacman *pacman) {
     int i = 0;
     for (i; i <= 6; i++){

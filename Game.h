@@ -24,7 +24,7 @@ void resetGame(Ghost *ghosts, Pacman *pacman) {
     sleep(2000000);
 }
 
-int game() {
+int game(int * score) {
 
     Pacman pacman;
     initPacman(&pacman);
@@ -38,15 +38,13 @@ int game() {
 
     initEntityMap();
 
-    int score = 0;
-
     while(1) {
         sleep(150000);
         clearDisplay();
 
         if(pacman.x == pacman.targetX * GRIDSIZE && pacman.y == pacman.targetY * GRIDSIZE) { // If player is at target grid.
             
-            checkPickup(pacman.targetX, pacman.targetY, ghosts, &score);    // Check if player is currently at a pickup
+            checkPickup(pacman.targetX, pacman.targetY, ghosts, score);    // Check if player is currently at a pickup
             handleInput(&pacman); 
 
             if(!checkCollision(pacman.targetX + pacman.dirX, pacman.targetY + pacman.dirY)) {
@@ -90,12 +88,10 @@ int game() {
         displayGhosts(ghosts, &pacman);                           
         displayPacman(&pacman);
 
-        displayScore(score);
+        displayScore(*score);
 
         updateDisplay();
     }
-
-    enterName(score);
 
     return 0;
 }
