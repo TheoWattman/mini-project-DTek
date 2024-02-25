@@ -21,3 +21,5 @@ void controls();
 void mainMenu();
 
 void enterName(int score);
+
+void menuAnimation(int frame);

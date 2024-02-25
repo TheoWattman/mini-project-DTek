@@ -65,8 +65,12 @@ void teleportGhost(Ghost *ghost, int targetX, int targetY);
 // Updates the ghost's path, position, direction etc. 
 void updateGhosts(Ghost *ghost, Pacman *pacman);
 
-int handlePacmanGhostCollision(Ghost *ghost, Pacman *pacman);
+// Checks if ghost is colliding with pacman, if so it handles it accordingly.
+// Ghost dies if currently fleeing otherwise pacman dies.
+int handlePacmanGhostCollision(Ghost *ghost, Pacman *pacman, int *score);
 
+// Select target grid based on ghost type.
 void ChasePacman(Ghost *ghost, Pacman *pacman);
 
+// Changes state of the ghost
 void changeGhostState(Ghost *ghost, int state);

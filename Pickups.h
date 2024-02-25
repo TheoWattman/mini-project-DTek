@@ -9,3 +9,5 @@ void initEntityMap();
 void drawEntityMap(Pacman *pacman);
 
 void checkPickup(int x, int y, Ghost *ghost, int* score);
+
+int entityMapIsClear();

@@ -58,3 +58,11 @@ void checkPickup(int x, int y, Ghost *ghost, int* score) {
         }
     }
 }
+
+int entityMapIsClear() {
+    int i = 2;
+    for (i; i < 62; i++){
+        if(entityMap[i]) return 0;
+    }
+    return 1;
+}

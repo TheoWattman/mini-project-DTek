@@ -35,6 +35,9 @@ void displayRow(uint8_t byteAmount, uint8_t * buffer);
 // Displays a line with a given x, y and length.
 void displayLine(int x, int y, int len);
 
+// Displays a rectangle with a given x, y, width and length.
+void displayRect(int x, int y, int width, int height);
+
 // Clears a line with a given x, y and length.
 void displayNotLine(int x, int y, int len) ;
 

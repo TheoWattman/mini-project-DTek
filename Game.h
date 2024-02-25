@@ -40,6 +40,19 @@ int game(int * score) {
 
     while(1) {
         sleep(150000);
+
+        // If player
+        if(entityMapIsClear()) {
+            initPacman(&pacman);
+            pacman.lives = 3;   
+
+            initGhost(&ghosts[0], BLINKY);
+            initGhost(&ghosts[1], INKY);
+            initGhost(&ghosts[2], CLYDE);
+            initGhost(&ghosts[3], PINKY);
+            initEntityMap();
+        }
+
         clearDisplay();
 
         if(pacman.x == pacman.targetX * GRIDSIZE && pacman.y == pacman.targetY * GRIDSIZE) { // If player is at target grid.
@@ -68,7 +81,7 @@ int game(int * score) {
         }
 
         // Check if Pacman is colliding with ghosts and handles it accordingly
-        if(handlePacmanGhostCollision(ghosts, &pacman)) {
+        if(handlePacmanGhostCollision(ghosts, &pacman, score)) {
             pacman.lives--;
 
             resetGame(ghosts, &pacman);

@@ -121,17 +121,16 @@ void teleportGhost(Ghost *ghost, int targetX, int targetY) {
     ghost->y = targetY * GRIDSIZE;
 }
 
-int handlePacmanGhostCollision(Ghost *ghost, Pacman *pacman) {
+int handlePacmanGhostCollision(Ghost *ghost, Pacman *pacman, int *score) {
     int i = 0;
     for (i; i < GHOST_AMOUNT; i++)
     {
         if((ghost[i].x - pacman->x) * (ghost[i].x - pacman->x) + (ghost[i].y - pacman->y) * (ghost[i].y - pacman->y) < 20) {
             if(ghost[i].state == SCATTER || ghost[i].state == CHASE) {
-                // game over logic here
-
                 return 1;
             } else if(ghost[i].state == FLEE) {
                 changeGhostState(&ghost[i], DEAD);
+                *score += 200;
             }
         }
     }

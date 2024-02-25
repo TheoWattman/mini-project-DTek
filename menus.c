@@ -3,6 +3,7 @@
 extern int highscores[];
 extern char initialList[];
 extern uint8_t font[];
+extern uint8_t controlBackground[];
 
 int menuOption = 0;
 int prevButtonStates = 0;
@@ -27,15 +28,11 @@ void storeHighScore(char* initials, int score) {
 
 void menuScreenDisplay() {
 
-    clearDisplay();
-
     displayString(10,5, "Play", font);
     displayString(10,13, "Scores", font);
     displayString(10,21, "Controls", font);
 
     displayLine(10, menuOption * 8 + 11, 40);
-
-    updateDisplay();
 }
 
 void scoreDisplay() {
@@ -139,7 +136,10 @@ void scores() {
 
 void controls() {
     // the controls screen
-	controlDisplay();
+	// controlDisplay();
+    clearDisplay();
+    displayBitarray(0,0, controlBackground);
+    updateDisplay();
 
     while(getBtns()){sleep(1000);}
 
@@ -156,6 +156,8 @@ void mainMenu()
 {
     menuOption = 0;
 
+    int menuAnimationFrame = 0;
+
     sleep(1000000);
 
 	menuScreenDisplay();
@@ -164,11 +166,18 @@ void mainMenu()
 
     // if button 1 pushed: pos++, if button 2 pressed: break
     while(1){
-
-        while(!getBtns()){}
+        while(!getBtns()){
+                clearDisplay();
+                menuScreenDisplay();
+                menuAnimation(menuAnimationFrame++);
+                updateDisplay();
+        }
         if (button4) {
                 menuOption = (menuOption + 1) % 3;
-                menuScreenDisplay(); // updates the bit array for the menu
+                clearDisplay();
+                menuScreenDisplay();
+                menuAnimation(menuAnimationFrame++);
+                updateDisplay();
         }
         else if (button3) {
 			break;
@@ -223,3 +232,37 @@ void enterName(int score) {
     sleep(1500000);
 
 }
+
+extern uint8_t menuAnim0[];
+extern uint8_t menuAnim1[];
+extern uint8_t menuAnim2[];
+extern uint8_t menuAnim3[];
+
+void menuAnimation(int frame) {
+
+    displayRect(124 - (frame / 6) % 55, 15, 4, 4);
+
+    displayRect(124 - (27 + frame / 6) % 55, 15, 4, 4);
+
+    switch((frame / 25) % 6) {
+        case 0:
+            displayBitarray(70, 6, menuAnim0);
+            break;
+        case 1:
+            displayBitarray(70, 6, menuAnim1);
+            break;
+        case 2:
+            displayBitarray(70, 6, menuAnim2);
+            break;
+        case 3:
+            displayBitarray(70, 6, menuAnim3);
+            break;
+        case 4:
+            displayBitarray(70, 6, menuAnim2);
+            break;
+        case 5:
+            displayBitarray(70, 6, menuAnim1);
+            break;
+    }
+    updateDisplay();
+};

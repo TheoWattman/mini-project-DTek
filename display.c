@@ -163,6 +163,14 @@ void displayNotLine(int x, int y, int len) {
     } 
 }
 
+void displayRect(int x, int y, int width, int height) {
+  	int i = y;
+    for (i; i < y + height; i++)
+    {
+        displayLine(x, i, width);
+    }  
+}
+
 void clearRect(int x, int y, int width, int height) {
   	int i = y;
     for (i; i < y + height; i++)
