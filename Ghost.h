@@ -18,6 +18,7 @@
 #define CLYDE 3
 
 // Ghost counter
+// Defines how long each state is.
 #define CHASE_COUNTER 500
 #define SCATTER_COUNTER 200
 #define FLEE_COUNTER 200
