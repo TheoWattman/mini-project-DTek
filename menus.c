@@ -10,7 +10,6 @@ int prevButtonStates = 0;
 
 void storeHighScore(char* initials, int score) {
 
-    // store highscore
     int i = 0;
     for(i; i < 4; i++) {
         if(score > highscores[i]) {
