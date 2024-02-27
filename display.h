@@ -47,6 +47,9 @@ void clearRect(int x, int y, int width, int height);
 // Displays the score.
 void displayScore(int score);
 
+// converts an int to a string
+void numToString(int score, char* str);
+
 // Sends the displayBuffer to the display and updates it.
 // from the chipkit ref manual
 void updateDisplay();

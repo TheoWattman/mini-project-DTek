@@ -72,6 +72,9 @@ void scoreDisplay() {
         else {
             displayChar(64, 2 + i*7, initialList[i*2], font);
             displayChar(69, 2 + i*7, initialList[i*2 + 1], font);
+            char str[10];
+            numToString(highscores[i], str);
+            displayString(78, 2 + i*7, str, font);
         }
     }
 

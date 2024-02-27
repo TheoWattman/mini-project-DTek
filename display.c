@@ -179,6 +179,20 @@ void clearRect(int x, int y, int width, int height) {
     }  
 }
 
+void numToString(int score, char* str) {
+    int tempNum = score;
+    int i = 0;
+    while (tempNum != 0){ // find length of score
+        tempNum /= 10;
+        i++;
+    }
+    str[i] = '\0';
+    while (score) {
+        str[--i] = '0' + (score % 10);
+        score /= 10;
+    }
+}
+
 void displayScore(int score) {
     
     //Display black box
@@ -189,17 +203,7 @@ void displayScore(int score) {
 
     //convert score to string
     char str[10];
-    int tempNum = score;
-    i = 0;
-    while (tempNum != 0){ // find length of score
-        tempNum /= 10;
-        i++;
-    }
-    str[i] = '\0';
-    while (score) {
-        str[--i] = '0' + (score % 10);
-        score /= 10;
-    }
+    numToString(score, str);
 
     //display the score
     displayString(1,0, str, font);
