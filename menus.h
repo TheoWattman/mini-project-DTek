@@ -6,7 +6,7 @@
 
 void storeHighScore(char* initials, int score);
 
-void menuScreenDisplay();
+void menuScreenDisplay(int frame);
 
 void scoreDisplay();
 
