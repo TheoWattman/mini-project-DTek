@@ -13,4 +13,4 @@ void drawEntityMap(Pacman *pacman); // Isac
 void checkPickup(int x, int y, Ghost *ghost, int* score); // Isac
 
 // Checks if player has cleared all pickups.
-int entityMapIsClear(); // Isac
+int entityMapIsClear(); // Theo
