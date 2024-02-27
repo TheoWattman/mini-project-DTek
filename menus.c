@@ -16,6 +16,8 @@ void storeHighScore(char* initials, int score) {
             int j = 3;
             for(j; j > i; j--) {
                 highscores[j] = highscores[j-1];
+                initialList[j * 2] = initialList[j * 2 - 2];
+                initialList[j * 2 + 1] = initialList[j * 2 - 1];
             }
             highscores[i] = score;
             initialList[i*2] = initials[0];
@@ -55,19 +57,14 @@ void scoreDisplay() {
     displayChar(48, 16, '3', font);
     displayChar(48, 23, '4', font);
 
-    displayLine(54,3,1);
-    displayLine(54,6,1);
-    displayLine(54,10,1);
-    displayLine(54,13,1);
-    displayLine(54,17,1);
-    displayLine(54,20,1);
-    displayLine(54,24,1);
-    displayLine(54,27,1);
-
-    displayLine(54,8,40);
-    displayLine(54,15,40);
-    displayLine(54,22,40);
-    displayLine(54,29,40);
+    putPixel(54,3);
+    putPixel(54,6);
+    putPixel(54,10);
+    putPixel(54,13);
+    putPixel(54,17);
+    putPixel(54,20);
+    putPixel(54,24);
+    putPixel(54,27);
 
     int i = 0;
     for(i; i < 4; i++) {
@@ -194,7 +191,7 @@ void mainMenu()
         int score = 0;
         game(&score);
         enterName(score);
-    }
+    } 
     if((menuOption % 3) == 1) {
         // enter scores
         scores();
@@ -233,8 +230,7 @@ void enterName(int score) {
 
     storeHighScore(initials, score);
 
-    sleep(1500000);
-
+    mainMenu();
 }
 
 extern uint8_t menuAnim0[];
