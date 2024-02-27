@@ -17,6 +17,8 @@ void storeHighScore(char* initials, int score) {
             int j = 3;
             for(j; j > i; j--) {
                 highscores[j] = highscores[j-1];
+                initialList[j * 2] = initialList[j * 2 - 2];
+                initialList[j * 2 + 1] = initialList[j * 2 - 1];
             }
             highscores[i] = score;
             initialList[i*2] = initials[0];

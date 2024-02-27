@@ -44,7 +44,7 @@ int game(int * score) {
         // If player
         if(entityMapIsClear()) {
             initPacman(&pacman);
-            pacman.lives = 3;   
+            pacman.lives = 1;   
 
             initGhost(&ghosts[0], BLINKY);
             initGhost(&ghosts[1], INKY);
