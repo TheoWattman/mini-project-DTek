@@ -44,7 +44,7 @@ void displayNotLine(int x, int y, int len) ;
 // Clears a rectangle with a given x, y, width and length.
 void clearRect(int x, int y, int width, int height);
 
-// Displays the score.
+// Displays the score in the top left of the screen
 void displayScore(int score);
 
 // converts an int to a string
