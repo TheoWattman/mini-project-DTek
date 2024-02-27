@@ -15,5 +15,4 @@
 
 // Ghosts
 #define GHOST_AMOUNT 4
-
 #define MAX_INT 2147483647

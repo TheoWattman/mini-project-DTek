@@ -20,23 +20,24 @@ typedef struct
     // The position of the camera
     int cameraX;
     int cameraY;
-
+    // Pacman lives, starts at 3
     int lives;
-} Pacman;
+} Pacman; // Theo
 
 // Intializes Pacman
-void initPacman(Pacman *pacman);
+void initPacman(Pacman *pacman); // Theo
 
 // Checks if the given position is a wall or not
-uint8_t checkCollision(int x, int y);
+uint8_t checkCollision(int x, int y); // Theo
 
 // Displays Pacman
-void displayPacman(Pacman *pacman);
+void displayPacman(Pacman *pacman); // Theo
 
 // Updates the position of Pacman and the camera
-void updatePacman(Pacman* pacman);
+void updatePacman(Pacman* pacman); // Theo
 
 // Teleports Pacman to a given grid
-void teleport(Pacman *pacman, int targetX, int targetY);
+void teleport(Pacman *pacman, int targetX, int targetY); // Theo
 
-void gameOverAnimation(Pacman *pacman);
+// Pauses the game and plays the game over animation.
+void gameOverAnimation(Pacman *pacman); // Theo

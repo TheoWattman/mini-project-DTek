@@ -7,7 +7,10 @@
 #define SET_COMMAND_MODE (PORTFCLR = 0x10)  // Set command mode, from the chipkit ref manual, it clears the bit at index 4 of PORTF
 #define SET_DATA_MODE (PORTFSET = 0x10)
 
+#define switch1 ((PORTD >> 8) & 0x1)
+
 uint8_t displayBuffer[DISPLAY_SIZE];
+
 
 extern uint8_t font[];
 
@@ -117,7 +120,12 @@ void displayRow(uint8_t byteAmount, uint8_t * buffer) {
         while ((SPI2STAT & PIC32_SPISTAT_SPITBE) == 0);
 
         // Write the next transmit byte.
-        SPI2BUF = *buffer++;
+        if(switch1) {
+            SPI2BUF = ~*buffer++;
+        } else {
+            SPI2BUF = *buffer++;
+        }
+        
 
         // Wait for receive byte.
         while ((SPI2STAT & PIC32_SPISTAT_SPITBE) == 0);

@@ -9,6 +9,6 @@
 #define button4 ((PORTD >> 7) & 0x1)	// 1000
 
 // Returns a 4 bit integer with one byte for each button.
-int getBtns();
+int getBtns(); // Theo
 // Moves pacman based on what buttons are currently pressed.
-void handleInput(Pacman *pacman);
+void handleInput(Pacman *pacman); // Theo
