@@ -5,31 +5,31 @@
 #include "IO.h"
 
 // places the score and initials in the highscore list
-void storeHighScore(char* initials, int score);
+void storeHighScore(char* initials, int score); // Isac
 
 // updates the main meny screen
-void menuScreenDisplay(int frame);
+void menuScreenDisplay(int frame); // Isac
 
 // updates the highscore list
-void scoreDisplay();
+void scoreDisplay(); // Isac
 
 // updates the game control screen
-void controlDisplay();
+void controlDisplay(); // Isac
 
 // updates the screen where you enter your initials
-void enterNameDisplay(char *initials, int pos);
+void enterNameDisplay(char *initials, int pos); // Isac
 
 // the highscore list menu
-void scores();
+void scores(); // Isac
 
 // the control screen
-void controls();
+void controls(); // Isac
 
 // the main menun
-void mainMenu();
+void mainMenu(); // Isac
 
 // the "enter you name" screen
-void enterName(int score);
+void enterName(int score); // Isac
 
 // updates the animation
-void menuAnimation(int frame);
+void menuAnimation(int frame); // Theo
