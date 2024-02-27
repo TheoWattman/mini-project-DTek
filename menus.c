@@ -26,13 +26,19 @@ void storeHighScore(char* initials, int score) {
     }
 }
 
-void menuScreenDisplay() {
+void menuScreenDisplay(int frame) {
 
+    clearDisplay();
     displayString(10,5, "Play", font);
     displayString(10,13, "Scores", font);
     displayString(10,21, "Controls", font);
 
     displayLine(10, menuOption * 8 + 11, 40);
+
+    menuAnimation(frame);
+
+    updateDisplay();
+
 }
 
 void scoreDisplay() {
@@ -160,29 +166,25 @@ void mainMenu()
 
     sleep(1000000);
 
-	menuScreenDisplay();
+	menuScreenDisplay(menuAnimationFrame);
 
     while(getBtns()){}
 
     // if button 1 pushed: pos++, if button 2 pressed: break
     while(1){
         while(!getBtns()){
-                clearDisplay();
-                menuScreenDisplay();
-                menuAnimation(menuAnimationFrame++);
-                updateDisplay();
+                menuScreenDisplay(menuAnimationFrame++);
         }
         if (button4) {
                 menuOption = (menuOption + 1) % 3;
-                clearDisplay();
-                menuScreenDisplay();
-                menuAnimation(menuAnimationFrame++);
-                updateDisplay();
+                menuScreenDisplay(menuAnimationFrame++);
         }
         else if (button3) {
 			break;
 		}
-        while(getBtns()){}
+        while(getBtns()){
+                menuScreenDisplay(menuAnimationFrame++);
+        }
     }
 
     if((menuOption % 3) == 0) {
@@ -240,9 +242,9 @@ extern uint8_t menuAnim3[];
 
 void menuAnimation(int frame) {
 
-    displayRect(124 - (frame / 6) % 55, 15, 4, 4);
+    displayRect(124 - (frame / 6) % 55, 14, 4, 4);
 
-    displayRect(124 - (27 + frame / 6) % 55, 15, 4, 4);
+    displayRect(124 - (27 + frame / 6) % 55, 14, 4, 4);
 
     switch((frame / 25) % 6) {
         case 0:
