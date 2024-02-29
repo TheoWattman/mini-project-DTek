@@ -8,6 +8,11 @@ A Pacman game devloped for the IS1200 course at KTH. The game is designed for th
 
 The game is compiled and built onto the board using the MCB32 toolchain available at: https://github.com/is1200-example-projects/mcb32tools.
 
+1. Navigate to the folder of the game using bash.
+2. Type ". /opt/mcb32tools/environment" into bash to enter the cross compile environment.
+3. Type "make" into bash to compile the code.
+4. Install the code onto the device by typing "make install TTYDEV=/dev/ttySX", replace X with COM numbero for the chipkit UNO32.
+
 ## Controls
  * Switch 1 : Invert display
 
