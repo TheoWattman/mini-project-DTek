@@ -7,3 +7,13 @@ A Pacman game devloped for the IS1200 course at KTH. The game is designed for th
 ## Running the game
 
 The game is compiled and built onto the board using the MCB32 toolchain available at: https://github.com/is1200-example-projects/mcb32tools.
+
+## Controls
+
+ * Button 4 : Left
+
+ * Button 3 : Up
+
+ * Button 2 : Down
+
+ * Button 1 : Right
