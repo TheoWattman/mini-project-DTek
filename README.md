@@ -2,7 +2,7 @@
 
 # Pacman
 
-A Pacman game devloped for the IS1200 course at KTH. The game is designed for the Chipkit Uno32 devlopment board together with the Chipkit Basic I/O shield.
+A Pacman game devloped for the IS1200 course at KTH which ended up winning "Best Project". The game is designed for the Chipkit Uno32 devlopment board together with the Chipkit Basic I/O shield.
 
 ## Running the game
 
